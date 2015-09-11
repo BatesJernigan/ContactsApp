@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    final static String NAME_KEY = "NAME";
+    final static String NAME_KEY = "NAME2";
 
     private List<Contact> contactsList = new ArrayList();
 
