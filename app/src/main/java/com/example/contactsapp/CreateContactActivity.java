@@ -7,18 +7,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class CreateContactActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_create_contact);
 
-        findViewById(R.id.create_btn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.create_contact_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CreateContactActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

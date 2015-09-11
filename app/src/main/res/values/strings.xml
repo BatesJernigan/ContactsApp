@@ -8,4 +8,11 @@
     <string name="delete_contact_label">Delete Contact</string>
     <string name="display_contact_label">Display Contact</string>
     <string name="finish_label">Finish Contact</string>
+    <string name="enter_name_label">Enter your name</string>
+    <string name="enter_label">Enter</string>
+    <string name="calling_activity_message">The calling activity was</string>
+    <string name="title_activity_create_contact">Create Contact</string>
+    <string name="title_activity_edit_contact">Edit Contact</string>
+    <string name="title_activity_delete_contact">Delete Contact</string>
+    <string name="title_activity_display_contacts">Display Contacts</string>
 </resources>

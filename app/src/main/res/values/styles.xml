@@ -5,7 +5,7 @@
 
     </style>
 
-    <style name="MainActivityButtons" parent="@style/Button">
+    <style name="MainActivityButtons">
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_width">match_parent</item>
