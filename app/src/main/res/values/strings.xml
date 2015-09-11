@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="create_contact_label">Create Contact</string>
+    <string name="edit_contact_label">Edit Contact</string>
+    <string name="delete_contact_label">Delete Contact</string>
+    <string name="display_contact_label">Display Contact</string>
+    <string name="finish_label">Finish Contact</string>
 </resources>
