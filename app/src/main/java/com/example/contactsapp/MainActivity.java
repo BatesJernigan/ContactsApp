@@ -3,24 +3,48 @@ package com.example.contactsapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    final static String NAME_KEY = "NAME";
+
+    private List<Contact> contactsList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        findViewById(R.id.create_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CreateContactActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
+    public void changeToCreateActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, CreateContactActivity.class);
+        intent.putExtra(NAME_KEY, "Bob Smith");
+        startActivity(intent);
+    }
+
+    public void changeToEditActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, EditContactActivity.class);
+        startActivity(intent);
+    }
+
+    public void changeToDeleteActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, DeleteContactActivity.class);
+        startActivity(intent);
+    }
+
+    public void changeToDisplayActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, DisplayContactsActivity.class);
+        startActivity(intent);
+    }
+
+    public void changeToFinishActivity(View view) {
+        finish();
+    }
 }

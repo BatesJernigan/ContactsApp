@@ -12,25 +12,30 @@
     <Button
         style="@style/MainActivityButtons"
         android:text="@string/create_contact_label"
-        android:id="@+id/create_btn"/>
+        android:id="@+id/create_btn"
+        android:onClick="changeToCreateActivity"/>
 
     <Button
         style="@style/MainActivityButtons"
         android:text="@string/edit_contact_label"
-        android:id="@+id/edit_btn"/>
+        android:id="@+id/edit_btn"
+        android:onClick="changeToEditActivity"/>
     <Button
         style="@style/MainActivityButtons"
         android:text="@string/delete_contact_label"
-        android:id="@+id/delete_btn"/>
+        android:id="@+id/delete_btn"
+        android:onClick="changeToDeleteActivity"/>
 
     <Button
         style="@style/MainActivityButtons"
         android:text="@string/display_contact_label"
-        android:id="@+id/display_btn"/>
+        android:id="@+id/display_btn"
+        android:onClick="changeToDisplayActivity"/>
 
     <Button
         style="@style/MainActivityButtons"
         android:text="@string/finish_label"
-        android:id="@+id/finish_btn"/>
+        android:id="@+id/finish_btn"
+        android:onClick="changeToFinishActivity"/>
 
 </LinearLayout>
