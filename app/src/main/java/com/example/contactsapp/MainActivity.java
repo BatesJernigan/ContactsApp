@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    final static String NAME_KEY = "NAMEBack";
+    final static int CREATE_CODE = 100;
     final static String CONTACT_KEY = "CONTACT";
 
     private List<Contact> contactsList = new ArrayList();
@@ -24,15 +24,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == CREATE_CODE) {
+            if (resultCode == RESULT_OK) {
+                String name = data.getExtras().getString(CONTACT_KEY);
+                Log.d("demo", "Value is recieved :" + name);
+            } else if(resultCode == RESULT_CANCELED) {
+                Log.d("demo", "No value recieved");
+            }
+        }
+    }
+
     public void changeToCreateActivity(View view) {
         Intent intent = new Intent(MainActivity.this, CreateContactActivity.class);
-//        Intent intent = new Intent();
-//        intent.setType("image/*");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        Contact contact = new Contact("Bates", "9999999900", "bates1012@aol.com");
-        intent.putExtra(CONTACT_KEY, contact);
-        startActivity(intent);
+        startActivityForResult(intent, CREATE_CODE);
     }
 
     public void changeToEditActivity(View view) {
