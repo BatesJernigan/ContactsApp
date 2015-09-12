@@ -14,5 +14,8 @@
         <item name="android:layout_centerHorizontal">true</item>
     </style>
 
+    <style name="ContactAvatar">
+        <item name="android:layout_marginTop">25dp</item>
+    </style>
 
 </resources>
