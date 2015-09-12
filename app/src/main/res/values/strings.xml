@@ -15,4 +15,8 @@
     <string name="title_activity_edit_contact">Edit Contact</string>
     <string name="title_activity_delete_contact">Delete Contact</string>
     <string name="title_activity_display_contacts">Display Contacts</string>
+    <string name="Name_Label">Name:</string>
+    <string name="Phone_label">Phone #:</string>
+    <string name="Email_Label">Email:</string>
+    <string name="Next_Button">Next</string>
 </resources>
