@@ -14,6 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     final static String NAME_KEY = "NAMEBack";
+    final static String CONTACT_KEY = "CONTACT";
 
     private List<Contact> contactsList = new ArrayList();
 
@@ -25,7 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToCreateActivity(View view) {
         Intent intent = new Intent(MainActivity.this, CreateContactActivity.class);
-        intent.putExtra(NAME_KEY, "Bob Smith");
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        Contact contact = new Contact("Bates", "9999999900", "bates1012@aol.com");
+        intent.putExtra(CONTACT_KEY, contact);
         startActivity(intent);
     }
 

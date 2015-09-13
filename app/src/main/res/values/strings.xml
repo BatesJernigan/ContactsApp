@@ -19,4 +19,13 @@
     <string name="Phone_label">Phone #:</string>
     <string name="Email_Label">Email:</string>
     <string name="Next_Button">Next</string>
+    <string name="name_edit_text_placeholder">Name</string>
+    <string name="phone_edit_text_placeholder">Phone Number</string>
+    <string name="email_edit_text_placeholder">Email</string>
+    <string name="previous_button">Previous</string>
+    <string name="first_contact_btn">first</string>
+    <string name="last_contact_btn">last</string>
+    <string name="Select_Contact">Select Contact</string>
+    <string name="Delete_Contact">Delete</string>
+    <string name="Cancel_Button">Cancel</string>
 </resources>

@@ -15,10 +15,17 @@ import java.util.ArrayList;
 
 public class DisplayContactsActivity extends AppCompatActivity {
 
-    public int clickcount = 0;
+    public int nextcount = 0;
+    public int prevcount = nextcount;
 
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_display_contacts);
         final ArrayList<Contact> items = new ArrayList<>();
+        final TextView name = (TextView) findViewById(R.id.DummyName);
+        final TextView phone = (TextView) findViewById(R.id.DummyNumber);
+        final TextView email = (TextView) findViewById(R.id.DummyEmail);
+
         Contact c3 = new Contact("alice3","08977676783","arjun3@unc.edu");
         Contact c2 = new Contact("alice2","08977676782","arjun2@unc.edu");
         Contact c1 = new Contact("alice1","08977676781","arjun1@unc.edu");
@@ -28,42 +35,52 @@ public class DisplayContactsActivity extends AppCompatActivity {
         items.add(c2);
         items.add(c3);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_contacts);
-
-        final TextView name = (TextView) findViewById(R.id.DummyName);
-        final TextView phone = (TextView) findViewById(R.id.DummyNumber);
-        final TextView email = (TextView) findViewById(R.id.DummyEmail);
-
+        name.setText(items.get(0).getName());
+        phone.setText(items.get(0).getPhone());
+        email.setText(items.get(0).getEmail());
 
         findViewById(R.id.NextBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickcount = clickcount+1;
-                if(clickcount < items.size()) {
-                    name.setText(items.get(clickcount).getName());
-                    phone.setText(items.get(clickcount).getPhone());
-                    email.setText(items.get(clickcount).getEmail());
+                nextcount = nextcount + 1;
+                if (nextcount < items.size()) {
+                    name.setText(items.get(nextcount).getName());
+                    phone.setText(items.get(nextcount).getPhone());
+                    email.setText(items.get(nextcount).getEmail());
+                } else {
+                    nextcount = 0;
+                    name.setText(items.get(nextcount).getName());
+                    phone.setText(items.get(nextcount).getPhone());
+                    email.setText(items.get(nextcount).getEmail());
                 }
-                else {
-                    clickcount = 0;
-                    name.setText(items.get(clickcount).getName());
-                    phone.setText(items.get(clickcount).getPhone());
-                    email.setText(items.get(clickcount).getEmail());
-                }
-
             }
         });
 
-        
+        findViewById(R.id.PrevBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prevcount = prevcount - 1;
+                if (prevcount < 0) {
+                    prevcount = items.size() - 1;
+                    name.setText(items.get(prevcount).getName());
+                    phone.setText(items.get(prevcount).getPhone());
+                    email.setText(items.get(prevcount).getEmail());
+                } else {
+                    name.setText(items.get(prevcount).getName());
+                    phone.setText(items.get(prevcount).getPhone());
+                    email.setText(items.get(prevcount).getEmail());
+                }
+            }
+        });
+
 
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"johne@uncc.edu"});
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email.getText().toString()});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "body");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
                 emailIntent.setType("message/rfc822");
                 startActivity(Intent.createChooser(emailIntent, "Choose Email App.."));
             }
@@ -72,11 +89,34 @@ public class DisplayContactsActivity extends AppCompatActivity {
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:123456789"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+ phone.getText().toString()));
                 startActivity(intent);
             }
         });
 
+        findViewById(R.id.firstContactbtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                name.setText(items.get(0).getName());
+                phone.setText(items.get(0).getPhone());
+                email.setText(items.get(0).getEmail());
+            }
+        });
 
+        findViewById(R.id.lastContactbtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                name.setText(items.get(items.size()-1).getName());
+                phone.setText(items.get(items.size()-1).getPhone());
+                email.setText(items.get(items.size()-1).getEmail());
+            }
+        });
+
+        findViewById(R.id.finish_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }
