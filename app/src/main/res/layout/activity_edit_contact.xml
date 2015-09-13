@@ -63,7 +63,40 @@
         android:layout_width="245dp"
         android:layout_height="135dp"
         android:id="@+id/edit_content_avatar"
+        android:layout_toLeftOf="@+id/imageButton"
+        android:layout_toStartOf="@+id/imageButton"
+        android:layout_alignParentEnd="false"
         android:layout_below="@+id/edit_contact_email"
-        android:layout_marginTop="10dp" />
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/avatar_blank"
+        android:layout_above="@+id/cancel_edit_activity" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gallery_button"
+        android:layout_alignBottom="@+id/edit_content_avatar"
+        android:layout_alignEnd="@+id/edit_contact_email"
+        android:layout_above="@+id/save_edit_activity" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/save_edit_activity"
+        android:text="Save "
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/edit_content_avatar"
+        android:layout_alignStart="@+id/edit_content_avatar" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/cancel_edit_activity"
+        android:layout_alignTop="@+id/save_edit_activity"
+        android:layout_alignRight="@+id/edit_content_avatar"
+        android:layout_alignEnd="@+id/edit_content_avatar" />
 
 </RelativeLayout>
