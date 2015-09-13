@@ -12,11 +12,11 @@ public class Contact implements Parcelable {
 
     private String name, phone, email, avatarPhoto;
 
-    public Contact(String name, String phone, String email /*, Uri avatarPhoto*/) {
+    public Contact(String name, String phone, String email , String avatarPhoto) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-//        this.avatarPhoto = avatarPhoto;
+        this.avatarPhoto = avatarPhoto;
     }
 
     public String getAvatarPhoto() {
@@ -51,16 +51,6 @@ public class Contact implements Parcelable {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Contact{" +
-            "avatarPhoto=" + avatarPhoto +
-            ", name='" + name + '\'' +
-            ", phone=" + phone +
-            ", email='" + email + '\'' +
-            '}';
-    }
-
     public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.Creator<Contact>() {
         public Contact createFromParcel(Parcel in) {
             return new Contact(in);
@@ -91,5 +81,15 @@ public class Contact implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+            "avatarPhoto=" + avatarPhoto +
+            ", name='" + name + '\'' +
+            ", phone=" + phone +
+            ", email='" + email + '\'' +
+            '}';
     }
 }

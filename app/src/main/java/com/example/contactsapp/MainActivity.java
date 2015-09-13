@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == CREATE_CODE) {
             if (resultCode == RESULT_OK) {
-                String name = data.getExtras().getString(CONTACT_KEY);
-                Log.d("demo", "Value is recieved :" + name);
+                Contact contact = (Contact) data.getExtras().get(CONTACT_KEY);
+                contactsList.add(contact);
             } else if(resultCode == RESULT_CANCELED) {
                 Log.d("demo", "No value recieved");
             }

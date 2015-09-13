@@ -18,4 +18,5 @@
     <string name="name_edit_text_placeholder">Name</string>
     <string name="phone_edit_text_placeholder">Phone Number</string>
     <string name="email_edit_text_placeholder">Email</string>
+    <string name="cancel_contact_activity">Cancel</string>
 </resources>
