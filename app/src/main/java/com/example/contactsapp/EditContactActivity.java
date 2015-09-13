@@ -20,19 +20,19 @@ public class EditContactActivity extends AppCompatActivity {
     private static final int PICTURE_CODE = 1;
 
     private EditText nameEditText, phoneEditText, emailEditText;
-    private ImageButton avatarButton2;
+    private ImageButton avatarButton;
     private String selectedImage;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_contact);
+        setContentView(R.layout.activity_edit_contact);
 
-        nameEditText = (EditText) findViewById(R.id.name_text_view);
-        phoneEditText = (EditText) findViewById(R.id.phone_text_view);
-        emailEditText = (EditText) findViewById(R.id.email_text_view);
+        nameEditText = (EditText) findViewById(R.id.edit_contact_name);
+        phoneEditText = (EditText) findViewById(R.id.edit_contact_phone);
+        emailEditText = (EditText) findViewById(R.id.edit_contact_email);
         avatarButton = (ImageButton) findViewById(R.id.gallery_button);
 
-        findViewById(R.id.save_contact_activity).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.save_edit_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = nameEditText.getText().toString();
@@ -53,7 +53,7 @@ public class EditContactActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.cancel_contact_activity).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.cancel_edit_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
