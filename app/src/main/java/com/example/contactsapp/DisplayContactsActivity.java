@@ -1,53 +1,54 @@
 package com.example.contactsapp;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class DisplayContactsActivity extends AppCompatActivity {
 
-    public int nextcount = 0;
-    public int prevcount = nextcount;
+    private int index = 0;
+    private ArrayList<Contact> items;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_contacts);
-        final ArrayList<Contact> items = new ArrayList<>();
+
+        items = getIntent().getParcelableArrayListExtra(MainActivity.CONTACT_KEY);
         final TextView name = (TextView) findViewById(R.id.Name_Field);
         final TextView phone = (TextView) findViewById(R.id.Phone_Field);
         final TextView email = (TextView) findViewById(R.id.Email_Field);
-
-        Contact c3 = new Contact("alice3","08977676783","arjun3@unc.edu","");
-        Contact c2 = new Contact("alice2","08977676782","arjun2@unc.edu","");
-        Contact c1 = new Contact("alice1","08977676781","arjun1@unc.edu","");
-        Contact c = new Contact("alice","0897767678","arjun@unc.edu","");
-        items.add(c);
-        items.add(c1);
-        items.add(c2);
-        items.add(c3);
+        final ImageView avatarPhoto = (ImageView) findViewById(R.id.photo);
 
         name.setText(items.get(0).getName());
         phone.setText(items.get(0).getPhone());
         email.setText(items.get(0).getEmail());
+        avatarPhoto.setImageURI(Uri.parse(items.get(0).getAvatarPhoto()));
+
 
         findViewById(R.id.NextBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextcount = nextcount + 1;
-                if (nextcount < items.size()) {
-                    name.setText(items.get(nextcount).getName());
-                    phone.setText(items.get(nextcount).getPhone());
-                    email.setText(items.get(nextcount).getEmail());
+                index++;
+                if (index < items.size()) {
+                    name.setText(items.get(index).getName());
+                    phone.setText(items.get(index).getPhone());
+                    email.setText(items.get(index).getEmail());
+                    avatarPhoto.setImageURI(Uri.parse(items.get(index).getAvatarPhoto()));
                 } else {
-                    nextcount = 0;
-                    name.setText(items.get(nextcount).getName());
-                    phone.setText(items.get(nextcount).getPhone());
-                    email.setText(items.get(nextcount).getEmail());
+                    index = 0; // reset index
+                    name.setText(items.get(index).getName());
+                    phone.setText(items.get(index).getPhone());
+                    email.setText(items.get(index).getEmail());
+                    avatarPhoto.setImageURI(Uri.parse(items.get(index).getAvatarPhoto()));
                 }
             }
         });
@@ -55,16 +56,18 @@ public class DisplayContactsActivity extends AppCompatActivity {
         findViewById(R.id.PrevBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prevcount = prevcount - 1;
-                if (prevcount < 0) {
-                    prevcount = items.size() - 1;
-                    name.setText(items.get(prevcount).getName());
-                    phone.setText(items.get(prevcount).getPhone());
-                    email.setText(items.get(prevcount).getEmail());
+                index--;
+                if (index < 0) {
+                    index = items.size() - 1; // reset index
+                    name.setText(items.get(index).getName());
+                    phone.setText(items.get(index).getPhone());
+                    email.setText(items.get(index).getEmail());
+                    avatarPhoto.setImageURI(Uri.parse(items.get(index).getAvatarPhoto()));
                 } else {
-                    name.setText(items.get(prevcount).getName());
-                    phone.setText(items.get(prevcount).getPhone());
-                    email.setText(items.get(prevcount).getEmail());
+                    name.setText(items.get(index).getName());
+                    phone.setText(items.get(index).getPhone());
+                    email.setText(items.get(index).getEmail());
+                    avatarPhoto.setImageURI(Uri.parse(items.get(index).getAvatarPhoto()));
                 }
             }
         });
@@ -96,6 +99,7 @@ public class DisplayContactsActivity extends AppCompatActivity {
                 name.setText(items.get(0).getName());
                 phone.setText(items.get(0).getPhone());
                 email.setText(items.get(0).getEmail());
+                avatarPhoto.setImageURI(Uri.parse(items.get(0).getAvatarPhoto()));
             }
         });
 
@@ -105,6 +109,7 @@ public class DisplayContactsActivity extends AppCompatActivity {
                 name.setText(items.get(items.size()-1).getName());
                 phone.setText(items.get(items.size()-1).getPhone());
                 email.setText(items.get(items.size()-1).getEmail());
+                avatarPhoto.setImageURI(Uri.parse(items.get(items.size()-1).getAvatarPhoto()));
             }
         });
 

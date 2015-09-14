@@ -13,47 +13,64 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class EditContactActivity extends AppCompatActivity {
 
     private static final int PICTURE_CODE = 1;
 
     private EditText nameEditText, phoneEditText, emailEditText;
-    private ImageButton avatarButton2;
+    private ImageButton avatarButton;
     private String selectedImage;
+    private int index = 0;
+    private ArrayList<Contact> contactList;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_contact);
+        setContentView(R.layout.activity_edit_contact);
 
-        nameEditText = (EditText) findViewById(R.id.name_text_view);
-        phoneEditText = (EditText) findViewById(R.id.phone_text_view);
-        emailEditText = (EditText) findViewById(R.id.email_text_view);
-        avatarButton = (ImageButton) findViewById(R.id.gallery_button);
+        contactList = getIntent().getParcelableArrayListExtra(MainActivity.CONTACT_KEY);
+        nameEditText = (EditText) findViewById(R.id.edit_contact_name);
+        phoneEditText = (EditText) findViewById(R.id.edit_contact_phone);
+        emailEditText = (EditText) findViewById(R.id.edit_contact_email);
+        avatarButton = (ImageButton) findViewById(R.id.edit_content_avatar);
 
-        findViewById(R.id.save_contact_activity).setOnClickListener(new View.OnClickListener() {
+        final CharSequence[] items = new CharSequence[contactList.size()];
+
+        for(int i=0; i< contactList.size(); i ++) {
+            items[i] = contactList.get(i).getName();
+        }
+
+        findViewById(R.id.save_edit_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = nameEditText.getText().toString();
                 String phone = phoneEditText.getText().toString();
                 String email = emailEditText.getText().toString();
-
+                if ( selectedImage == null || selectedImage.length() == 0) {
+                    selectedImage = getString(R.string.default_blank_avatar_path);
+                }
 
                 if (isTextBad(name, phone, email)) {
                     setResult(RESULT_CANCELED);
                 } else {
-                    ;
+                    Toast.makeText(EditContactActivity.this, "Edited Contact", Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent();
+                    intent.putExtra(MainActivity.Index_value, index);
+
                     intent.putExtra(MainActivity.CONTACT_KEY,
-                            new Contact(name, phone, email, selectedImage));
+                        new Contact(name, phone, email, selectedImage));
                     setResult(RESULT_OK, intent);
                 }
                 finish();
             }
         });
 
-        findViewById(R.id.cancel_contact_activity).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.cancel_edit_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -67,9 +84,33 @@ public class EditContactActivity extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent,
-                        "Select Picture"), PICTURE_CODE);
+                    "Select Picture"), PICTURE_CODE);
             }
         });
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select a Contact")
+            .setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.d("demo", "selected" + " " + items[which]);
+                    nameEditText.setText(contactList.get(which).getName(), TextView.BufferType.EDITABLE);
+                    phoneEditText.setText(contactList.get(which).getPhone(), TextView.BufferType.EDITABLE);
+                    emailEditText.setText(contactList.get(which).getEmail(), TextView.BufferType.EDITABLE);
+                    avatarButton.setImageURI(Uri.parse(contactList.get(which).getAvatarPhoto()));
+                    index = which;
+                }
+            });
+        final AlertDialog alert = builder.create();
+
+        findViewById(R.id.edit_contact_activity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.show();
+            }
+        });
+
+
     }
 
     @Override
@@ -104,33 +145,4 @@ public class EditContactActivity extends AppCompatActivity {
 
         return flag;
     }
-
-    //alerts pull down menu to select contact once you click the select contact button
-    CharSequence[] items = {"Alice Smith", "Cynthia Walter", "Mary George", "Zak Castilo"};
-
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Select a Contact")
-
-                .setItems(items , new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // The 'which' argument contains the index position
-                        // of the selected item
-                        Log.d("demo", "Selected" + items[which]);
-
-                    }
-                });
-        return builder.create();
-
-        findViewById(R.id.edit_contact_activity).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                alert.show();
-            }
-        });
-
-    }
-
-
 }

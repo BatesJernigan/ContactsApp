@@ -17,6 +17,8 @@
         style="@style/CreateEditTextViews"
         android:hint="@string/phone_edit_text_placeholder"
         android:id="@+id/phone_text_view"
+        android:inputType="phone"
+        android:digits="0123456789"
         android:layout_below="@id/name_text_view"/>
 
     <EditText

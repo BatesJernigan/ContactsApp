@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +15,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     final static int CREATE_CODE = 100;
-    final static String CONTACT_KEY = "CONTACT";
     final static int delete_code = 111;
+    final static int EDIT_CODE = 204;
+    final static String CONTACT_KEY = "CONTACT";
+
     final static String Index_value = "INDEX";
 
-    final static  ArrayList<Contact> contactsList = new ArrayList();
+    ArrayList<Contact> contactsList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,20 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 int in = (int) data.getExtras().get(Index_value);
                 contactsList.remove(in);
-                Log.d("demo","removed");
+                Log.d("demo", "removed");
+            } else if(resultCode == RESULT_CANCELED) {
+                Log.d("demo", "No value recieved");
+            }
+        }
+
+        if(requestCode == EDIT_CODE) {
+            if (resultCode == RESULT_OK) {
+
+                Contact editedContact = data.getExtras().getParcelable(CONTACT_KEY);
+                int in = (int) data.getExtras().get(Index_value);
+                contactsList.remove(in);
+                contactsList.add(in, editedContact);
+                Log.d("demo", "new contact at index" + contactsList.get(in));
             } else if(resultCode == RESULT_CANCELED) {
                 Log.d("demo", "No value recieved");
             }
@@ -55,17 +71,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToEditActivity(View view) {
         Intent intent = new Intent(MainActivity.this, EditContactActivity.class);
-        startActivity(intent);
+        intent.putParcelableArrayListExtra(CONTACT_KEY, contactsList);
+        startActivityForResult(intent, EDIT_CODE);
     }
 
     public void changeToDeleteActivity(View view) {
         Intent intent = new Intent(MainActivity.this, DeleteContactActivity.class);
+        intent.putParcelableArrayListExtra(CONTACT_KEY, contactsList);
         startActivityForResult(intent,delete_code);
     }
 
     public void changeToDisplayActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, DisplayContactsActivity.class);
-        startActivity(intent);
+        if(contactsList.isEmpty()){
+            Toast.makeText(MainActivity.this, "Please create a contact first", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(MainActivity.this, DisplayContactsActivity.class);
+            intent.putParcelableArrayListExtra(CONTACT_KEY, contactsList);
+            startActivity(intent);
+        }
     }
 
     public void changeToFinishActivity(View view) {

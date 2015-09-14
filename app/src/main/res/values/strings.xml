@@ -22,6 +22,9 @@
     <string name="phone_edit_text_placeholder">Phone Number</string>
     <string name="email_edit_text_placeholder">Email</string>
     <string name="cancel_contact_activity">Cancel</string>
+    <string name="default_blank_avatar_path">
+        android.resource://com.example.contactsapp/drawable/avatar_blank
+    </string>
 
     <!-- delete contact activity ****************************************************************-->
     <string name="Name_Label">Name:</string>

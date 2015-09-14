@@ -66,50 +66,50 @@
         android:layout_alignLeft="@+id/Phone_Field"
         android:layout_alignStart="@+id/Phone_Field" />
 
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/PrevBtn"
+        android:src="@drawable/prev_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/Phone_Label"
+        android:layout_toEndOf="@id/Phone_Label" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@id/PrevBtn"
         android:text="@string/finishBtn"
         android:id="@+id/finishBtn"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-
     <ImageButton
         android:layout_width="45dp"
-        android:layout_height="40dp"
-        android:id="@+id/PrevBtn"
-        android:src="@drawable/prev_btn"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/Phone_Label"
-        android:layout_toEndOf="@+id/Phone_Label" />
-
-    <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:id="@+id/NextBtn"
         android:src="@drawable/next_btn"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/finishBtn"
-        android:layout_toEndOf="@+id/finishBtn" />
+        android:layout_toRightOf="@id/finishBtn"
+        android:layout_toEndOf="@id/finishBtn" />
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:id="@+id/firstContactbtn"
         android:src="@drawable/firstbtn"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/PrevBtn"
-        android:layout_toStartOf="@+id/PrevBtn" />
+        android:layout_toLeftOf="@id/PrevBtn"
+        android:layout_toStartOf="@id/PrevBtn" />
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:id="@+id/lastContactbtn"
         android:src="@drawable/lastbtn"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/NextBtn"
-        android:layout_toEndOf="@+id/NextBtn" />
+        android:layout_toRightOf="@id/NextBtn"
+        android:layout_toEndOf="@id/NextBtn" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
         android:id="@+id/photo"
         android:layout_marginTop="44dp"
         android:src="@drawable/avatar_blank"
-        android:layout_below="@+id/Email_Field"
+        android:layout_below="@id/Email_Field"
         android:layout_centerHorizontal="true" />
 
 

@@ -1,13 +1,11 @@
+/**
+ * Created by Bates Jernigan, Arjun Kabballi Srinivasa, Tempestt Swinson
+ */
+
 package com.example.contactsapp;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.io.Serializable;
-
-/**
- * Created by batesjernigan on 9/11/15.
- */
 public class Contact implements Parcelable {
 
     private String name, phone, email, avatarPhoto;
@@ -69,8 +67,7 @@ public class Contact implements Parcelable {
         dest.writeString(avatarPhoto);
     }
 
-    // order matters here, this.name, this.phone != this.phone, this.name,
-    // follow order of writeParcel
+    // order matters here follow order of writeParcel
     private Contact(Parcel in) {
         this.name = in.readString();
         this.phone = in.readString();
