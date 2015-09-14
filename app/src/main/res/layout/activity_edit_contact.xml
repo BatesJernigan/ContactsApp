@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="phone"
-        android:ems="10"
+        android:digits="0123456789"
         android:id="@+id/edit_contact_phone"
         android:layout_below="@+id/edit_contact_name"
         android:layout_alignParentLeft="true"
