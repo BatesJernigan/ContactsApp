@@ -44,11 +44,14 @@ public class CreateContactActivity extends AppCompatActivity {
                 String phone = phoneEditText.getText().toString();
                 String email = emailEditText.getText().toString();
 
+                if ( selectedImage == null || selectedImage.length() == 0) {
+                    selectedImage =
+                        "android.resource://com.example.contactsapp/drawable/avatar_blank";
+                }
 
                 if (isTextBad(name, phone, email)) {
                     setResult(RESULT_CANCELED);
                 } else {
-                    ;
                     Intent intent = new Intent();
                     intent.putExtra(MainActivity.CONTACT_KEY,
                         new Contact(name, phone, email, selectedImage));

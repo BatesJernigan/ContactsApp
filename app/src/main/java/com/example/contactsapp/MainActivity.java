@@ -14,11 +14,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     final static int CREATE_CODE = 100;
-    final static String CONTACT_KEY = "CONTACT";
     final static int delete_code = 111;
+    final static int EDIT_CODE = 204;
+    final static String CONTACT_KEY = "CONTACT";
+
     final static String Index_value = "INDEX";
 
-    final static  ArrayList<Contact> contactsList = new ArrayList();
+    ArrayList<Contact> contactsList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +57,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToEditActivity(View view) {
         Intent intent = new Intent(MainActivity.this, EditContactActivity.class);
-        startActivity(intent);
+        intent.putParcelableArrayListExtra(CONTACT_KEY, contactsList);
+        startActivityForResult(intent, EDIT_CODE);
     }
 
     public void changeToDeleteActivity(View view) {
         Intent intent = new Intent(MainActivity.this, DeleteContactActivity.class);
+        intent.putParcelableArrayListExtra(CONTACT_KEY, contactsList);
         startActivityForResult(intent,delete_code);
     }
 
     public void changeToDisplayActivity(View view) {
         Intent intent = new Intent(MainActivity.this, DisplayContactsActivity.class);
+        intent.putParcelableArrayListExtra(CONTACT_KEY, contactsList);
         startActivity(intent);
     }
 

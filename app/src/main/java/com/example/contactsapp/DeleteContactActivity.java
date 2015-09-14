@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +29,12 @@ public class DeleteContactActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_contact);
 
-        final ArrayList<Contact> clist;
-        clist =  MainActivity.contactsList;
+        final ArrayList<Contact> clist = getIntent().getParcelableArrayListExtra(MainActivity.CONTACT_KEY);
 
         final TextView name = (TextView) findViewById(R.id.Name_field);
         final TextView phone = (TextView) findViewById(R.id.Phone_field);
         final TextView email = (TextView) findViewById(R.id.Email_field);
+        final ImageView avatarPhoto = (ImageView) findViewById(R.id.imageView2);
 
         int clist_size = clist.size();
 
@@ -50,6 +53,7 @@ public class DeleteContactActivity extends Activity {
                         name.setText(clist.get(which).getName());
                         phone.setText(clist.get(which).getPhone());
                         email.setText(clist.get(which).getEmail());
+                        avatarPhoto.setImageURI(Uri.parse(clist.get(which).getAvatarPhoto()));
                         index = which;
                     }
                 });
