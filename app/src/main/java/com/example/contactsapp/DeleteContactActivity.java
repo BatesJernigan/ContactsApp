@@ -22,7 +22,6 @@ import java.util.List;
 
 public class DeleteContactActivity extends Activity {
 
-
     int index=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +68,15 @@ public class DeleteContactActivity extends Activity {
         findViewById(R.id.DeleteContactBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //send information to main activity inorder to delete contact
                 name.setText("");
                 phone.setText("");
                 email.setText("");
                 Toast.makeText(DeleteContactActivity.this, "Deleted Contact", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent();
                 intent.putExtra(MainActivity.Index_value,index);
                 setResult(RESULT_OK,intent);
+                finish();
             }
         });
 

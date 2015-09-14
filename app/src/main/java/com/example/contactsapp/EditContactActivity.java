@@ -50,14 +50,17 @@ public class EditContactActivity extends AppCompatActivity {
                 String name = nameEditText.getText().toString();
                 String phone = phoneEditText.getText().toString();
                 String email = emailEditText.getText().toString();
+                if ( selectedImage == null || selectedImage.length() == 0) {
+                    selectedImage = getString(R.string.default_blank_avatar_path);
+                }
 
                 if (isTextBad(name, phone, email)) {
                     setResult(RESULT_CANCELED);
                 } else {
                     Toast.makeText(EditContactActivity.this, "Edited Contact", Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent();
                     intent.putExtra(MainActivity.Index_value, index);
-                    contactList.remove(index);
 
                     intent.putExtra(MainActivity.CONTACT_KEY,
                         new Contact(name, phone, email, selectedImage));

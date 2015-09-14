@@ -45,8 +45,7 @@ public class CreateContactActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
 
                 if ( selectedImage == null || selectedImage.length() == 0) {
-                    selectedImage =
-                        "android.resource://com.example.contactsapp/drawable/avatar_blank";
+                    selectedImage = getString(R.string.default_blank_avatar_path);
                 }
 
                 if (isTextBad(name, phone, email)) {
@@ -103,7 +102,7 @@ public class CreateContactActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
         }
 
-        if(!email.matches("^([a-z]|[A-Z]|\\d*)*@[a-z]*(\\.com)") || email == null ||
+        if(!email.matches("^(\\w|\\.)*@\\w*(\\.com)") || email == null ||
             email.length() == 0) {
             flag = true;
             Toast.makeText(this, "Email address can't be blank and needs to be valid",
