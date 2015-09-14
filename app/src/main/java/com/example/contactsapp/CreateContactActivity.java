@@ -1,3 +1,9 @@
+/**
+ * Assignment: HW_2
+ * Created by Thurman Bates Jernigan, Arjun Kabballi Srinivasa, Tempestt Swinson
+ * File Name: CreateContactActivity.java
+ */
+
 package com.example.contactsapp;
 
 import android.content.Intent;
@@ -15,15 +21,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class CreateContactActivity extends AppCompatActivity {
-
-//        if(getIntent().getExtras() != null) {
-//            String name = getIntent().getExtras().getString(MainActivity.NAME_KEY);
-//            Contact contact = getIntent().getExtras().getParcelable(MainActivity.CONTACT_KEY);
-////            Toast.makeText(this, name, Toast.LENGTH_LONG).show();
-//            Toast.makeText(this, contact.toString(), Toast.LENGTH_LONG).show();
-
-    private static final int PICTURE_CODE = 1;
-
+    static final int PICTURE_CODE = 1;
     private EditText nameEditText, phoneEditText, emailEditText;
     private ImageButton avatarButton;
     private String selectedImage;

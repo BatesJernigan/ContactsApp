@@ -1,3 +1,9 @@
+/**
+ * Assignment: HW_2
+ * Created by Thurman Bates Jernigan, Arjun Kabballi Srinivasa, Tempestt Swinson
+ * File Name: DeleteContactActivity.java
+ */
+
 package com.example.contactsapp;
 
 import android.app.Activity;
