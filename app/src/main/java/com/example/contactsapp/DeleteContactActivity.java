@@ -73,6 +73,7 @@ public class DeleteContactActivity extends Activity {
                 Intent intent = new Intent();
                 intent.putExtra(MainActivity.Index_value,index);
                 setResult(RESULT_OK,intent);
+                finish();
             }
         });
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,12 +61,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToDeleteActivity(View view) {
         Intent intent = new Intent(MainActivity.this, DeleteContactActivity.class);
-        startActivityForResult(intent,delete_code);
+        startActivityForResult(intent, delete_code);
     }
 
     public void changeToDisplayActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, DisplayContactsActivity.class);
-        startActivity(intent);
+
+        if(MainActivity.contactsList.isEmpty()){
+            Toast.makeText(MainActivity.this, "Please create a contact first", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(MainActivity.this, DisplayContactsActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void changeToFinishActivity(View view) {
