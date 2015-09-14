@@ -53,7 +53,7 @@ public class EditContactActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.cancel_edit_activity).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.cancel_edit_activity ).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -133,4 +133,9 @@ public class EditContactActivity extends AppCompatActivity {
     }
 
 
+    if (getIntent().getExtras() ! = null){
+        User user = getIntent().getExtras().getSerializable(MainActivity.CONTACT_KEY);
+        Toast.makeText(this, User, Toast.LENGTH_LONG).show();
+            
+    }
 }
