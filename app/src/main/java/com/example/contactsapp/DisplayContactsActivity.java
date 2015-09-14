@@ -17,19 +17,12 @@ public class DisplayContactsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_contacts);
-        final ArrayList<Contact> items = new ArrayList<>();
+        final ArrayList<Contact> items ;
         final TextView name = (TextView) findViewById(R.id.Name_Field);
         final TextView phone = (TextView) findViewById(R.id.Phone_Field);
         final TextView email = (TextView) findViewById(R.id.Email_Field);
 
-        Contact c3 = new Contact("alice3","08977676783","arjun3@unc.edu","");
-        Contact c2 = new Contact("alice2","08977676782","arjun2@unc.edu","");
-        Contact c1 = new Contact("alice1","08977676781","arjun1@unc.edu","");
-        Contact c = new Contact("alice","0897767678","arjun@unc.edu","");
-        items.add(c);
-        items.add(c1);
-        items.add(c2);
-        items.add(c3);
+        items = MainActivity.contactsList;
 
         name.setText(items.get(0).getName());
         phone.setText(items.get(0).getPhone());
