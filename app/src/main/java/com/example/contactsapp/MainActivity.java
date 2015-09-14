@@ -15,8 +15,10 @@ public class MainActivity extends AppCompatActivity {
 
     final static int CREATE_CODE = 100;
     final static String CONTACT_KEY = "CONTACT";
+    final static int delete_code = 111;
+    final static String Index_value = "INDEX";
 
-    private List<Contact> contactsList = new ArrayList();
+    final static  ArrayList<Contact> contactsList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("demo", "No value recieved");
             }
         }
+        if(requestCode == delete_code) {
+            if (resultCode == RESULT_OK) {
+                int in = (int) data.getExtras().get(Index_value);
+                contactsList.remove(in);
+                Log.d("demo","removed");
+            } else if(resultCode == RESULT_CANCELED) {
+                Log.d("demo", "No value recieved");
+            }
+        }
     }
+
 
     public void changeToCreateActivity(View view) {
         Intent intent = new Intent(MainActivity.this, CreateContactActivity.class);
@@ -48,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToDeleteActivity(View view) {
         Intent intent = new Intent(MainActivity.this, DeleteContactActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,delete_code);
     }
 
     public void changeToDisplayActivity(View view) {

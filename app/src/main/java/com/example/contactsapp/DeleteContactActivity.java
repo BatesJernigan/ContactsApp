@@ -3,6 +3,7 @@ package com.example.contactsapp;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,31 +11,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteContactActivity extends Activity {
 
 
-
+    int index=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_contact);
 
-        final ArrayList<Contact> clist = new ArrayList<>();
-
-        Contact c = new Contact("alice","0897767678","arjun@unc.edu","");
-        Contact c1 = new Contact("alice1","08977676781","arjun1@unc.edu","");
-        Contact c2 = new Contact("alice2","08977676782","arjun2@unc.edu","");
-        Contact c3 = new Contact("alice3","08977676783","arjun3@unc.edu","");
-
-
-        clist.add(c);
-        clist.add(c1);
-        clist.add(c2);
-        clist.add(c3);
+        final ArrayList<Contact> clist;
+        clist =  MainActivity.contactsList;
 
         final TextView name = (TextView) findViewById(R.id.Name_field);
         final TextView phone = (TextView) findViewById(R.id.Phone_field);
@@ -57,6 +50,7 @@ public class DeleteContactActivity extends Activity {
                         name.setText(clist.get(which).getName());
                         phone.setText(clist.get(which).getPhone());
                         email.setText(clist.get(which).getEmail());
+                        index = which;
                     }
                 });
 
@@ -72,6 +66,13 @@ public class DeleteContactActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //send information to main activity inorder to delete contact
+                name.setText("");
+                phone.setText("");
+                email.setText("");
+                Toast.makeText(DeleteContactActivity.this, "Deleted Contact", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra(MainActivity.Index_value,index);
+                setResult(RESULT_OK,intent);
             }
         });
 
